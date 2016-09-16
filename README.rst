@@ -38,13 +38,29 @@ Full review
 Schema
 ------
 
-\`\`\`python [ { 'name': 'Mustafa Faraj Muhammad Masud al-Jadid
-al-Uzaybi', 'isn': '10017', 'notification\_date': '4/4/2016',
-'hearing\_or\_review\_date': '8/16/2016', 'final\_determination\_date':
-'', 'missing\_documents' ['4','6'], 'documents': [ { 'type\_name':
-'Government's Unclassified Summary', 'type\_id': '1', 'url':
-'http://www.prs.mil/Portals/60/Documents/ISN10017/160331\_U\_ISN10017\_GOVERNMENTS\_UNCLASSIFIED\_SUMMARY\_PUBLIC.pdf',
-'denied': False, 'denial': None }, ... ] }, ...]
+.. code:: json
+
+    [
+        {
+            'name': 'Mustafa Faraj Muhammad Masud al-Jadid al-Uzaybi',
+            'isn': '10017',
+            'notification_date': '4/4/2016',
+            'hearing_or_review_date': '8/16/2016',
+            'final_determination_date': '',
+            'missing_documents' ['4','6'],
+            'documents': [
+                {
+                    'type_name': 'Government's Unclassified Summary',
+                    'type_id': '1',
+                    'url': 'http://www.prs.mil/Portals/60/Documents/ISN10017/160331_U_ISN10017_GOVERNMENTS_UNCLASSIFIED_SUMMARY_PUBLIC.pdf',
+                    'denied': False,
+                    'denial': None
+                },
+                ...
+            ]
+        },
+        ...
+    ]
 
 Output
 ------

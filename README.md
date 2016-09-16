@@ -23,7 +23,7 @@ full_review > full_review.json
 ```
 
 ## Schema
-```python
+```json
 [
     {
         'name': 'Mustafa Faraj Muhammad Masud al-Jadid al-Uzaybi',
@@ -45,6 +45,7 @@ full_review > full_review.json
     },
     ...
 ]
+```
 
 ## Output
 

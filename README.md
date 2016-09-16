@@ -31,7 +31,7 @@ full_review > full_review.json
         "notification_date": "4/4/2016",
         "hearing_or_review_date": "8/16/2016",
         "final_determination_date": "",
-        "missing_documents" ["4","6"],
+        "missing_documents": ["4","6"],
         "documents": [
             {
                 "type_name": "Government's Unclassified Summary",

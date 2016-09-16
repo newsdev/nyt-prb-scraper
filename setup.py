@@ -17,12 +17,12 @@ def read(filename):
 
 setup(
     name='nyt-prb-scraper',
-    version='0.0.1',
+    version='0.0.2',
     author='Jeremy Bowers',
     author_email='jeremy.bowers@nytimes.com',
     url='https://github.com/newsdev/nyt-prb-scraper',
     description='A client for scraping and parsing the Periodic Review Secretariat\'s web page for Guananamo detainees.',
-    long_description=read('README.md'),
+    long_description=read('README.rst'),
     packages=('prb',),
     entry_points={
         'console_scripts': (
@@ -33,15 +33,5 @@ setup(
     },
     license="Apache License 2.0",
     keywords='national security guantanamo bay criminal justice department of defense',
-    install_requires=reqs,
-    classifiers=(
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Developers',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
-    )
+    install_requires=reqs
 )

@@ -2,3 +2,4 @@ lxml
 python-dateutil
 requests
 ujson
+beautifulsoup4

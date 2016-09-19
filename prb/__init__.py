@@ -63,6 +63,13 @@ def _parse_date(date_string):
 
     return date_string.strftime("%Y-%m-%d")
 
+
+def _prepare_url(url):
+    if not "http://www.prs.mil" in url:
+        url = "http://www.prs.mil" + url
+    return url
+
+
 def _scrape(page):
     data = []
 
@@ -85,7 +92,7 @@ def _scrape(page):
                     document['final_determination_date'] = _parse_date(cells[3].text.strip())
                     document['type_name'] = page['document_types'][link.text.strip()]
                     document['type_id'] = link.text.strip()
-                    document['url'] = link.attrs['href'].strip()
+                    document['url'] = _prepare_url(link.attrs['href'].strip())
                     document['denied'] = False
                     document['denial'] = None
                     document['id'] = "%s-%s-%s" % (document['isn'], document['type_id'], document['hearing_or_review_date'])

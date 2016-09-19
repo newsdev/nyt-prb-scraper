@@ -7,7 +7,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-install_reqs = parse_requirements('requirements.txt', session=PipSession())
+install_reqs = parse_requirements(os.path.join(os.path.dirname(__file__), 'requirements.txt'), session=PipSession())
 reqs = [str(ir.req) for ir in install_reqs]
 
 

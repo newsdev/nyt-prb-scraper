@@ -16,9 +16,9 @@ initial_review --tsv > initial_review.tsv
 
 ### File review
 ```bash
-fiel_review --csv > file_review.csv
-fiel_review --json > file_review.json
-fiel_review --tsv > file_review.tsv
+file_review --csv > file_review.csv
+file_review --json > file_review.json
+file_review --tsv > file_review.tsv
 ```
 
 ### Full review

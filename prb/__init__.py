@@ -1,6 +1,10 @@
+import argparse
+import csv
+import datetime
 import sys
 
 from bs4 import BeautifulSoup
+from dateutil import parser as dateparser
 import requests
 import ujson as json
 
@@ -39,11 +43,28 @@ documents = {
         'selector': 'table#dnn_ctr20067_Default_List_grdData',
         'url': 'http://www.prs.mil/Review-Information/Full-Review/'
     },
-}    
+}
 
+
+argparser = argparse.ArgumentParser(description='Return PRB documents')
+argparser.add_argument('-o', '--output', action='store')
+argparser.add_argument('--json', action='store_true')
+argparser.add_argument('--csv', action='store_true')
+argparser.add_argument('--tsv', action='store_true')
+
+args = argparser.parse_args()
+
+
+def _parse_date(date_string):
+    if date_string.strip() == "":
+        return None
+
+    date_string = dateparser.parse(date_string).date()
+
+    return date_string.strftime("%Y-%m-%d")
 
 def _scrape(page):
-    payload = []
+    data = []
 
     request = requests.get(page['url'])
     soup = BeautifulSoup(request.content, "lxml")
@@ -54,39 +75,64 @@ def _scrape(page):
     for row in rows:
         cells = row.select('td')
         if len(cells) > 0:
-            detainee = {}
-            detainee['name'] = cells[0].text.split(' (')[0].strip()
-            detainee['isn'] = cells[0].text.split('ISN ')[1].split(')')[0].strip()
-            detainee['notification_date'] = cells[1].text.strip()
-            detainee['hearing_or_review_date'] = cells[2].text.strip()
-            detainee['final_determination_date'] = cells[3].text.strip()
-            detainee['missing_documents'] = []
-            detainee['documents'] = []
-
             for link in cells[4].select('a'):
                 if page['document_types'].get(link.text.strip(), None):
                     document = {}
+                    document['name'] = cells[0].text.split(' (')[0].strip()
+                    document['isn'] = cells[0].text.split('ISN ')[1].split(')')[0].strip()
+                    document['notification_date'] = _parse_date(cells[1].text.strip())
+                    document['hearing_or_review_date'] = _parse_date(cells[2].text.strip())
+                    document['final_determination_date'] = _parse_date(cells[3].text.strip())
                     document['type_name'] = page['document_types'][link.text.strip()]
                     document['type_id'] = link.text.strip()
                     document['url'] = link.attrs['href'].strip()
                     document['denied'] = False
                     document['denial'] = None
+                    document['id'] = "%s-%s-%s" % (document['isn'], document['type_id'], document['hearing_or_review_date'])
                     if "Detainee-Request" in link.attrs['href'].strip() or "DetaineeRequest" in link.attrs['href'].strip():
                         document['url'] = None
                         document['denied'] = True
                         document['denial'] = 'At the request of the detainee.'
-                    detainee['documents'].append(document)
 
-            for d in page['document_types'].keys():
-                if d not in [z['type_id'] for z in detainee['documents']]:
-                    detainee['missing_documents'].append(d)
+                    data.append(document)
+    return data
 
-            payload.append(detainee)
-    return payload
+
+def _output_csv(data):
+    writer = csv.DictWriter(sys.stdout, fieldnames=sorted(data[0].keys(), key=lambda x:x), dialect=csv.excel)
+    writer.writeheader()
+
+    for p in data:
+        writer.writerow(p)
+
+
+def _output_tsv(data):
+    writer = csv.DictWriter(sys.stdout, fieldnames=sorted(data[0].keys(), key=lambda x:x), dialect=csv.excel_tab)
+    writer.writeheader()
+
+    for p in data:
+        writer.writerow(p)
+
+
+def _output_json(data):
+    sys.stdout.write(json.dumps(data))
 
 
 def _output(data):
-    sys.stdout.write(json.dumps(data))
+    if args.json:
+        _output_json(data)
+
+    elif args.tsv:
+        _output_tsv(data)
+
+    elif args.output and args.output == 'json':
+        _output_json(data)
+
+    elif args.output and args.output == 'tsv':
+        _output_tsv(data)
+
+    else:
+        _output_csv(data)
 
 
 def initial_review():

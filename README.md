@@ -8,43 +8,113 @@ The PRB engages in three different forms of review for a Guantanamo detainee"s d
 
 
 ### Initial review
-```
-initial_review > initial_review.json
+```bash
+initial_review --csv > initial_review.csv
+initial_review --json > initial_review.json
+initial_review --tsv > initial_review.tsv
 ```
 
 ### File review
-```
-file_review > file_review.json
+```bash
+fiel_review --csv > file_review.csv
+fiel_review --json > file_review.json
+fiel_review --tsv > file_review.tsv
 ```
 
 ### Full review
-```
-full_review > full_review.json
+```bash
+full_review --csv > full_review.csv
+full_review --json > full_review.json
+full_review --tsv > full_review.tsv
 ```
 
 ## Schema
+
+Returns a row or an object for every document. Each document contains the document-specific fields like `type_name`, `type_id`, and `url` as well as the detainee-specific fields like `name` and `isn`. Builds a unique id for each document from `isn-type_id-hearing_or_review_date`.
+
 ```json
 [
     {
-        "name": "Mustafa Faraj Muhammad Masud al-Jadid al-Uzaybi",
-        "isn": "10017",
-        "notification_date": "4/4/2016",
-        "hearing_or_review_date": "8/16/2016",
-        "final_determination_date": "",
-        "missing_documents": ["4","6"],
-        "documents": [
-            {
-                "type_name": "Government's Unclassified Summary",
-                "type_id": "1",
-                "url": "http://www.prs.mil/Portals/60/Documents/ISN10017/160331_U_ISN10017_GOVERNMENTS_UNCLASSIFIED_SUMMARY_PUBLIC.pdf",
-                "denied": false,
-                "denial": null
-            }
-        ]
+        "hearing_or_review_date":"2014-11-05",
+        "denial":null,
+        "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
+        "type_id":"1",
+        "url":"http:\/\/www.prs.mil\/Portals\/60\/Documents\/ISN037\/141105_U_ISN037_GOVERNMENT'S_UNCLASSIFIED_SUMMARY_PUBLIC.pdf",
+        "type_name":"Government's Unclassified Summary",
+        "id":"037-1-2014-11-05",
+        "isn":"037",
+        "denied":false,
+        "notification_date":"2014-08-26",
+        "final_determination_date":"2014-12-05"
+    },
+    {
+        "hearing_or_review_date":"2014-11-05",
+        "denial":null,
+        "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
+        "type_id":"2",
+        "url":"http:\/\/www.prs.mil\/Portals\/60\/Documents\/ISN037\/141105_U_ISN037_PR_STATEMENT_PRB.pdf",
+        "type_name":"Opening Statements of Detainee's Representatives",
+        "id":"037-2-2014-11-05",
+        "isn":"037",
+        "denied":false,
+        "notification_date":"2014-08-26",
+        "final_determination_date":"2014-12-05"
+    },
+    {
+        "hearing_or_review_date":"2014-11-05",
+        "denial":null,
+        "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
+        "type_id":"3",
+        "url":"http:\/\/www.prs.mil\/Portals\/60\/Documents\/ISN037\/141216_U_ISN037_DETAINEE_WRITTEN_SUBMISSION_PUBLIC.pdf",
+        "type_name":"Detainee's Written Submission",
+        "id":"037-3-2014-11-05",
+        "isn":"037",
+        "denied":false,
+        "notification_date":"2014-08-26",
+        "final_determination_date":"2014-12-05"
+    },
+    {
+        "hearing_or_review_date":"2014-11-05",
+        "denial":null,
+        "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
+        "type_id":"4",
+        "url":"http:\/\/www.prs.mil\/LinkClick.aspx?fileticket=RFOMdQD69k4%3d&tabid=8447&portalid=60&mid=20067",
+        "type_name":"Transcript of Public Session",
+        "id":"037-4-2014-11-05",
+        "isn":"037",
+        "denied":false,
+        "notification_date":"2014-08-26",
+        "final_determination_date":"2014-12-05"
+    },
+    {
+        "hearing_or_review_date":"2014-11-05",
+        "denial":null,
+        "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
+        "type_id":"5",
+        "url":"http:\/\/www.prs.mil\/Portals\/60\/Documents\/ISN037\/141105_U_ISN037_TRANSCRIPT_OF_DETAINEE_SESSION_PUBLIC.pdf",
+        "type_name":"Transcript of Detainee Session",
+        "id":"037-5-2014-11-05",
+        "isn":"037",
+        "denied":false,
+        "notification_date":"2014-08-26",
+        "final_determination_date":"2014-12-05"
+    },
+    {
+        "hearing_or_review_date":"2014-11-05",
+        "denial":null,
+        "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
+        "type_id":"6",
+        "url":"http:\/\/www.prs.mil\/LinkClick.aspx?fileticket=s0XT-7qYc94%3d&tabid=8447&portalid=60&mid=20067",
+        "type_name":"Unclassified Summary of Final Determination",
+        "id":"037-6-2014-11-05",
+        "isn":"037",
+        "denied":false,
+        "notification_date":"2014-08-26",
+        "final_determination_date":"2014-12-05"
     }
 ]
 ```
 
 ## Output
 
-The scrapers return JSON.
+The scrapers can return CSV, JSON or TSV. The default if no options are passed is CSV.

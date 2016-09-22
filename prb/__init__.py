@@ -85,6 +85,8 @@ def _scrape(page):
             for link in cells[4].select('a'):
                 if page['document_types'].get(link.text.strip(), None):
                     document = {}
+                    document['review_type'] = page['url'].split('http://www.prs.mil/Review-Information/')[1].lower().strip().replace('/','')
+                    document['review_url'] = page['url']
                     document['name'] = cells[0].text.split(' (')[0].strip()
                     document['isn'] = cells[0].text.split('ISN ')[1].split(')')[0].strip()
                     document['notification_date'] = _parse_date(cells[1].text.strip())

@@ -35,6 +35,8 @@ Returns a row or an object for every document. Each document contains the docume
 ```json
 [
     {
+        "review_type": "full-review",
+        "review_url": "http://www.prs.mil/Review-Information/Initial-Review/",
         "hearing_or_review_date":"2014-11-05",
         "denial":null,
         "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
@@ -48,6 +50,8 @@ Returns a row or an object for every document. Each document contains the docume
         "final_determination_date":"2014-12-05"
     },
     {
+        "review_type": "full-review",
+        "review_url": "http://www.prs.mil/Review-Information/Initial-Review/",
         "hearing_or_review_date":"2014-11-05",
         "denial":null,
         "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
@@ -61,6 +65,8 @@ Returns a row or an object for every document. Each document contains the docume
         "final_determination_date":"2014-12-05"
     },
     {
+        "review_type": "full-review",
+        "review_url": "http://www.prs.mil/Review-Information/Initial-Review/",
         "hearing_or_review_date":"2014-11-05",
         "denial":null,
         "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
@@ -74,6 +80,8 @@ Returns a row or an object for every document. Each document contains the docume
         "final_determination_date":"2014-12-05"
     },
     {
+        "review_type": "full-review",
+        "review_url": "http://www.prs.mil/Review-Information/Initial-Review/",
         "hearing_or_review_date":"2014-11-05",
         "denial":null,
         "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
@@ -87,6 +95,8 @@ Returns a row or an object for every document. Each document contains the docume
         "final_determination_date":"2014-12-05"
     },
     {
+        "review_type": "full-review",
+        "review_url": "http://www.prs.mil/Review-Information/Initial-Review/",
         "hearing_or_review_date":"2014-11-05",
         "denial":null,
         "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",
@@ -100,6 +110,8 @@ Returns a row or an object for every document. Each document contains the docume
         "final_determination_date":"2014-12-05"
     },
     {
+        "review_type": "full-review",
+        "review_url": "http://www.prs.mil/Review-Information/Initial-Review/",
         "hearing_or_review_date":"2014-11-05",
         "denial":null,
         "name":"Abdel Malik Ahmed Abdel Wahab Al Rahabi",

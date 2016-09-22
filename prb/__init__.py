@@ -97,7 +97,7 @@ def _scrape(page):
                     document['url'] = _fix_url(link.attrs['href'].strip())
                     document['denied'] = False
                     document['denial'] = None
-                    document['id'] = "%s-%s-%s" % (document['isn'], document['type_id'], document['hearing_or_review_date'])
+                    document['id'] = "%(isn)s-%(review_type)s-%(type_id)s-%(hearing_or_review_date)s" % document
                     if "Detainee-Request" in link.attrs['href'].strip() or "DetaineeRequest" in link.attrs['href'].strip():
                         document['url'] = None
                         document['denied'] = True

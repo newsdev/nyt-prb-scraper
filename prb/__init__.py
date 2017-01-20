@@ -82,7 +82,7 @@ def _scrape(page):
     for row in rows:
         cells = row.select('td')
         if len(cells) > 0:
-            for link in cells[4].select('a'):
+            for link in cells[5].select('a'):
                 if page['document_types'].get(link.text.strip(), None):
                     document = {}
                     document['review_type'] = page['url'].split('http://www.prs.mil/Review-Information/')[1].lower().strip().replace('/','')
